@@ -74,6 +74,7 @@ So we have to use the following command to get the hidden files as well:
 cat -EnT ./.*
 ```
 And here we have our file output:
+
 ![Image of file output for ...](static/image-4.png)
 
 

@@ -15,9 +15,9 @@ Linux permissions are the entire foundation of privilege escalation. This is lev
 ## 🔍 Reconnaissance:
 1. Opened the challenge page  
 ![Challenge page](static/image.png)
-2. Checked out the man pages for id an chmod at:
-https://man7.org/linux/man-pages/man1/id.1.html
-and:
+2. Checked out the man pages for id an chmod at:  
+https://man7.org/linux/man-pages/man1/id.1.html  
+and:  
 https://man7.org/linux/man-pages/man1/chmod.1.html
 
 ## 🛠️ Tools Used:
@@ -52,18 +52,21 @@ After opening the file, we can see that it contains paths to directories with me
 Now immediately based on the file output, I thought about the permissions right? Clearly this challenge is about permissions, else we wouldn't have chmod and stuff.
 
 Therefore, I checked the the groups I am part of using id:
+
 ![Groups](static/image-3.png)
 
 We can I am part of three groups. One of those is important for the next part.
 
 ### Step 4:
 So I went ahead and scanned through the entire directory of the challenge to find multiple files:
+
 ![Directory scan](static/image-4.png)
 
 We can see that we have that the group analysts has read access to the files in the middle directory. Considering we're part of that group, we can totally read them. And based on the file name... We can deduct which contains what.
 
 ### Step 5:
 Went ahead and got file output to get the password for the next challenge:
+
 ![File contents](static/image-5.png)
 
 ### Step 6:

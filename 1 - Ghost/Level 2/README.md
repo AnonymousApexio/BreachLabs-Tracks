@@ -51,6 +51,7 @@ Now let's see what's in those files.
 cd investigation; cat ./* && cat ./.leads/*
 ```
 ![List of the files' contents'](static/image-3.png)
+
 This gives us the password to move to the next step.
 
 ### Step 4:

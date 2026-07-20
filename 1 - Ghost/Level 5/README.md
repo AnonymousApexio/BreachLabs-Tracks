@@ -45,6 +45,7 @@ We only have a README in the home directory, so let's check it out.
 
 ### Step 3:
 ![README file content](static/image-3.png)
+
 In the file, we find a little explanation telling us that the commands ss and netstat are both 'locked down' (basically we don't have permission to use them)
 
 If we check the permissions we can clearly see we don't have access.
@@ -145,6 +146,7 @@ After this, we can see if our socket is on with:
 ls -l /proc/self/fd
 ```
 ![file descriptor list](static/image-11.png)
+
 The number in between the brackets is called a socket inode number which just identifies what socket we're using, remember the philosophy:
 
 - "In Linux, Almost everything is treated as a file".
@@ -192,6 +194,7 @@ Now we can use cat for reading and echo for writing to our file descriptor:
 cat <&3
 ```
 Now I can see what's the banner for the connection, right?
+
 ![authenticate](static/image-13.png)
 
 Oh? Why does it not work? I typed in our token "GHOST", yet it doesn't give anything?

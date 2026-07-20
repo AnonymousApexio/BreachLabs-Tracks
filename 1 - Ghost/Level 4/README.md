@@ -13,7 +13,7 @@ Threat hunting. This is the core loop of every SOC analyst on the planet - find 
 
 
 ## 🔍 Reconnaissance:
-1. Opened the challenge page  
+1. Opened the challenge page
 ![Challenge page](static/image.png)
 
 ## 🛠️ Tools Used:
@@ -86,6 +86,7 @@ find . -type f ! -size 63c -a ! -size 48c -ls
 Now concretely what this is we filter for all files that ARE NOT sizes of 63 or 48 and we output in a detailed format.
 
 This gives us:
+
 ![Output of filtered files](static/image-5.png)
 
 The censored files are the ones containing the password. This is one way to filter out the noise. The other files are from people who fail to clean up their trace on the system once they're done using it, which is unfortunate.
@@ -96,6 +97,7 @@ Another way we can do this automatically is using a pipe with the grep command:
 ls -l | grep -v -E "63|48"
 ```
 ![Size filtering](static/image-6.png)
+
 List the files, and inverse grep the size (which will NOT accept the sizes in input instead of accepting them, that's the -v parameter), -E is for extended regex.
 
 ### Step 4.3:
@@ -118,6 +120,7 @@ For the sake of the screenshot, I also had to filter with "record" but that's be
 Anyhow, depending on the way you did it, you might get the password directly, or not.
 
 Either way, just cat the file.
+
 ![Password file](static/image-8.png)
 
 ### Step 6:
