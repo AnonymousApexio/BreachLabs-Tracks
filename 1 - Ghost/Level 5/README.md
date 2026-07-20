@@ -14,7 +14,7 @@ Network reconnaissance and banner grabbing. The opening move in every pentest.
 
 ## 🔍 Reconnaissance:
 1. Opened the challenge page  
-![Challenge page](image.png)
+![Challenge page](static/image.png)
 
 ## 🛠️ Tools Used:
 - ssh
@@ -31,7 +31,7 @@ Connected using ssh to the target using the credentials found in Challenge 4:
 ```bash
 ssh ghost5@204.168.229.209 -p 2222
 ```
-![Image of connection](image-1.png)
+![Image of connection](static/image-1.png)
 
 ### Step 2:
 As usual, scanned through the home directory:
@@ -39,16 +39,16 @@ As usual, scanned through the home directory:
 ```bash
 ls -lRa
 ```
-![README file](image-2.png)
+![README file](static/image-2.png)
 
 We only have a README in the home directory, so let's check it out.
 
 ### Step 3:
-![README file content](image-3.png)
+![README file content](static/image-3.png)
 In the file, we find a little explanation telling us that the commands ss and netstat are both 'locked down' (basically we don't have permission to use them)
 
 If we check the permissions we can clearly see we don't have access.
-![Permission check](image-4.png)
+![Permission check](static/image-4.png)
 
 Alright... So how to do this? It says we can use curl and nc, the description of the challenge also has nmap in it... Fine...
 
@@ -63,7 +63,7 @@ We will add T5 to make a bit faster.
 ```bash
 nmap -T5 127.0.0.1
 ```
-![List of ports 1](image-5.png)
+![List of ports 1](static/image-5.png)
 
 Oh? We only see SSH open... Weird. Why's that?
 
@@ -80,7 +80,7 @@ nmap -T5 -p- 127.0.0.1
 ```
 
 This gives us:
-![nmap output](image-6.png)
+![nmap output](static/image-6.png)
 
 Alright... Now we can see we have quite a few ports... We see a few with unknown services, and others with "known services".
 
@@ -93,7 +93,7 @@ nmap -T5 -p- --script=banner 127.0.0.1
 ```
 This will give us the banner of all open ports on our system.
 
-![nmap banner output](image-7.png)
+![nmap banner output](static/image-7.png)
 
 We can see quite a few things, some of them will be seen in later challenges, surprisingly we don't have the banner for port 30003 which we will see in Challenge 19.
 
@@ -105,7 +105,7 @@ For this, we will use netcat (nc).
 ```bash
 nc 127.0.0.1 30100
 ```
-![netcat output](image-8.png)
+![netcat output](static/image-8.png)
 
 Alright, so... That's pretty cool, we found our port and the token "GHOST" we need with netcat.
 
@@ -125,7 +125,7 @@ But it works for our purpose of fetching raw data over TCP:
 curl --http0.9 http://127.0.0.1:30100
 ```
 Curl 7.66.0 and above disallow HTTP 0.9 by default, so you will need to use the `--http0.9` parameter to enable it.
-![curl output](image-9.png)
+![curl output](static/image-9.png)
 
 ### Step 4.33 [SKIP IF YOU WISH TO NOT SEE BASH NATIVE]:
 Alright... Before moving on, I want to demonstrate one last way to do this natively in bash.
@@ -138,13 +138,13 @@ Let's create our connection, for this, we will use the `exec` command and assign
 ```bash
 exec 3<>/dev/tcp/127.0.0.1/30101
 ```
-![exec use](image-10.png)
+![exec use](static/image-10.png)
 
 After this, we can see if our socket is on with:
 ```bash
 ls -l /proc/self/fd
 ```
-![file descriptor list](image-11.png)
+![file descriptor list](static/image-11.png)
 The number in between the brackets is called a socket inode number which just identifies what socket we're using, remember the philosophy:
 
 - "In Linux, Almost everything is treated as a file".
@@ -166,7 +166,7 @@ We can see those informations in the virtual files `/proc/net/tcp` and `/proc/ne
 ```bash
 cat /proc/net/tcp
 ```
-![proc net tcp output](image-12.png)
+![proc net tcp output](static/image-12.png)
 
 Alright wow, what's all this?
 
@@ -192,7 +192,7 @@ Now we can use cat for reading and echo for writing to our file descriptor:
 cat <&3
 ```
 Now I can see what's the banner for the connection, right?
-![authenticate](image-13.png)
+![authenticate](static/image-13.png)
 
 Oh? Why does it not work? I typed in our token "GHOST", yet it doesn't give anything?
 
@@ -207,7 +207,7 @@ and:
 ```bash
 cat >&3
 ```
-![writing](image-14.png)
+![writing](static/image-14.png)
 
 And there we go, we have our credentials!
 

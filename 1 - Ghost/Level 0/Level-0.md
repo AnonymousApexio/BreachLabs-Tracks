@@ -26,7 +26,7 @@ Connected using ssh to the target using the provided credentials:
 ```bash
 ssh ghost0@204.168.229.209 -p 2222
 ```
-![Image of connection](image-1.png)
+![Image of connection](static/image-1.png)
 
 ### Step 2:
 Scanned through the home directory:
@@ -34,7 +34,7 @@ Scanned through the home directory:
 ```bash
 ls -lRa
 ```
-![Image of enumeration](image-2.png)
+![Image of enumeration](static/image-2.png)
 
 ### Step 3:
 Found credentials.txt and opened it to find the password:
@@ -42,7 +42,7 @@ Found credentials.txt and opened it to find the password:
 ```bash
 cat credentials.txt
 ```
-![Image of the censored password](image-3.png)
+![Image of the censored password](static/image-3.png)
 
 ### Step 4:
 Moved on to the next level using the found password.

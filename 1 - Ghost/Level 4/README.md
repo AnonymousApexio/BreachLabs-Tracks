@@ -14,7 +14,7 @@ Threat hunting. This is the core loop of every SOC analyst on the planet - find 
 
 ## 🔍 Reconnaissance:
 1. Opened the challenge page  
-![Challenge page](image.png)
+![Challenge page](static/image.png)
 
 ## 🛠️ Tools Used:
 - ssh
@@ -31,7 +31,7 @@ Connected using ssh to the target using the credentials found in Challenge 3:
 ```bash
 ssh ghost4@204.168.229.209 -p 2222
 ```
-![Image of the connection](image-1.png)
+![Image of the connection](static/image-1.png)
 
 ### Step 2:
 As usual, scanned through the home directory:
@@ -41,7 +41,7 @@ ls -lRa
 ```
 Now, this is pretty interesting... 
 
-![Hundreds files](image-2.png)
+![Hundreds files](static/image-2.png)
 
 We have a ton of files. Clearly a lot to go through, but... A lot of them are just filled with useless stuff. Let's take one at random for an example. A lot of them seem to be user generated tho, I'll be cleaning all of them up later.
 
@@ -60,7 +60,7 @@ The easiest way to do it is to filter by size, now you can do this manually by d
 ```bash
 ls -l
 ```
-![List of file sizes](image-3.png)
+![List of file sizes](static/image-3.png)
 
 And then using your eyeballs to filter the sizes, most of what I see is either 63 or 48.
 
@@ -70,7 +70,7 @@ find . -type f -exec ls -l {} + | sort | head -10
 ```
 We find on our current directory, for all files and for all we execute the ls -l command on the entire group of files, we sort from smallest to biggest and we only take the first 10 and output them.
 
-![Top 10 files](image-4.png)
+![Top 10 files](static/image-4.png)
 
 Now, this will give you the top 10 smallest files, but you can also use the -size flag to filter by size. For example, if you want to find all files that are 48 bytes in size, you can do:
 ```bash
@@ -86,7 +86,7 @@ find . -type f ! -size 63c -a ! -size 48c -ls
 Now concretely what this is we filter for all files that ARE NOT sizes of 63 or 48 and we output in a detailed format.
 
 This gives us:
-![Output of filtered files](image-5.png)
+![Output of filtered files](static/image-5.png)
 
 The censored files are the ones containing the password. This is one way to filter out the noise. The other files are from people who fail to clean up their trace on the system once they're done using it, which is unfortunate.
 
@@ -95,7 +95,7 @@ Another way we can do this automatically is using a pipe with the grep command:
 ```bash
 ls -l | grep -v -E "63|48"
 ```
-![Size filtering](image-6.png)
+![Size filtering](static/image-6.png)
 List the files, and inverse grep the size (which will NOT accept the sizes in input instead of accepting them, that's the -v parameter), -E is for extended regex.
 
 ### Step 4.3:
@@ -112,13 +112,13 @@ Now, what this does is simple, we concatenate all of the files' content together
 
 For the sake of the screenshot, I also had to filter with "record" but that's because some people have replaced one file with an ls ouput... and yeah...)
 
-![Filter content](image-7.png)
+![Filter content](static/image-7.png)
 
 ### Step 5:
 Anyhow, depending on the way you did it, you might get the password directly, or not.
 
 Either way, just cat the file.
-![Password file](image-8.png)
+![Password file](static/image-8.png)
 
 ### Step 6:
 Cleaned up with:

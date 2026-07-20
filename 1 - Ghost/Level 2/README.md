@@ -14,11 +14,10 @@ Forensics and malware persistence analysis. Attackers hide their tools in exactl
 
 ## 🔍 Reconnaissance:
 1. Opened the challenge page  
-![Image of the challenge](image.png)
+![Image of the challenge](static/image.png)
 
 ## 🛠️ Tools Used:
 - ssh
-- find
 - ls
 - cat
 
@@ -30,7 +29,7 @@ Connected using ssh to the target using the credentials found in Challenge 1:
 ```bash
 ssh ghost2@204.168.229.209 -p 2222
 ```
-![Image of connection](image-1.png)
+![Image of connection](static/image-1.png)
 
 ### Step 2:
 As usual, scanned through the home directory:
@@ -41,7 +40,7 @@ ls -lRa
 We get a bunch of directories but nothing that directly stands out.
 However we do notice as directory named "investigation" once we scroll all the way down.
 
-![Investigation](image-2.png)
+![Investigation](static/image-2.png)
 
 Based on the file sizes, I already have an idea of which file has the password.
 
@@ -51,7 +50,7 @@ Now let's see what's in those files.
 ```bash
 cd investigation; cat ./* && cat ./.leads/*
 ```
-![List of the files' contents'](image-3.png)
+![List of the files' contents'](static/image-3.png)
 This gives us the password to move to the next step.
 
 ### Step 4:

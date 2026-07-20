@@ -29,7 +29,7 @@ Connected using ssh to the target using the credentials found in Challenge 0:
 ```bash
 ssh ghost1@204.168.229.209 -p 2222
 ```
-![Image of connection](image-1.png)
+![Image of connection](static/image-1.png)
 
 ### Step 2:
 Scanned through the home directory:
@@ -37,7 +37,7 @@ Scanned through the home directory:
 ```bash
 ls -lRa
 ```
-![Image of enumeration](image-2.png)
+![Image of enumeration](static/image-2.png)
 
 Immediately, I see multiple files that have weird names... Notably:
 -rw-r----- 1 ghost1 ghost1   13 Jun 22 13:41  -
@@ -64,7 +64,7 @@ cat -EnT ./*
 
 I thought of using -v for non printable characters but I didn't think it would be needed at this point in time.
 
-![Image of file outputs](image-3.png)
+![Image of file outputs](static/image-3.png)
 
 Now, we can see that indeed, we get most of the files, however "..." is missing because it starts with "." and in linux file systems, this is used to create "hidden" files, as such it wouldn't be acted amongst "./\*" but "./.\*"
 
@@ -74,7 +74,7 @@ So we have to use the following command to get the hidden files as well:
 cat -EnT ./.*
 ```
 And here we have our file output:
-![Image of file output for ...](image-4.png)
+![Image of file output for ...](static/image-4.png)
 
 
 ### Step 4:
