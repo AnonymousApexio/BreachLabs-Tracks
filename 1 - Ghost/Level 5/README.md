@@ -214,5 +214,10 @@ cat >&3
 
 And there we go, we have our credentials!
 
+We can close our connection with:
+```bash
+exec 3<&-
+```
+
 ### Step 5:
 Moved on to the next level using the password we found.
