@@ -22,6 +22,9 @@ Threat hunting. This is the core loop of every SOC analyst on the planet - find 
 - ls
 - find
 - cat
+- exec
+- sort
+- head
 
 ## 🚀 Solution:
 
