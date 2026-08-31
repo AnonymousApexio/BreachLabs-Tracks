@@ -9,12 +9,12 @@
 **Link:** https://breachlab.org/tracks/ghost/ii
 
 ## 📋 Description:
-
+This challenge is about pivoting. You will need to use the key you found in the level to connect to the next machine and read the flag in the home directory of the pipeline user.
 
 ## 🛠️ Tools Used:
 - ssh
 - cat
-- gepcap
+
 
 ## 🚀 Solution:
 
@@ -35,6 +35,7 @@ This will be the third time we've seen this output...
 getcap -r / 2>/dev/null
 ```
 ![hal-guard](static/image-1.png)
+
 Alright, so we already know we need to find a program with the CAP_DAC_OVERRIDE capability, and the only one that has this? It's hal-guard, so let's try it.
 
 ```bash
@@ -49,12 +50,14 @@ We have two files, a README and id_pipeline, let's see their content.
 hal-guard /etc/halcyon/deploy/id_pipeline
 ```
 ![private_key pipeline](static/image-3.png)
+
 So we have a private key that we can use for ssh.
 
 ```bash
 hal-guard /etc/halcyon/deploy/README
 ```
 ![README](static/image-4.png)
+
 So our flag is just on the other side. Let's use the key to authenticate ourselves.
 
 ### Step 4:

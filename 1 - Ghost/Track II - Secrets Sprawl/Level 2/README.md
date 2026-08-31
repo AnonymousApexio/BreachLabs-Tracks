@@ -106,7 +106,7 @@ int main() {
     execve(args[0], args, envp);
 
     // If execve succeeds, the code below is never executed
-    perror("[-] Échec du lancement du shell");
+    perror("[-] Failed to launch the shell.");
     return 1;
 }
 ```

@@ -53,6 +53,7 @@ ls -laR
 ```
 
 ![Briefing](static/image-2.png)
+
 We only have one interesting file `kael.txt` in the home directory, so let's check it out.
 
 ```bash
@@ -140,6 +141,7 @@ IAB is the syntax you will find in `capsh` or `pam_cap`. It is the modern inheri
 
 They can be seen in /proc/1/status:  
 ![grep_1_capabilities](static/image-6.png)
+
 EPB are all set fully.
 
 Can also by using `getpcaps`:  
@@ -165,6 +167,7 @@ Some options I think are relevant are:
 
 Example:  
 ![alt text](static/image-10.png)
+
 This shows us the three different views and we can see that the 13th bit is set (0010) in inherited and ambient sets. If you try to use capsh using just the `addAmb` parameter, you will get a `failed to raise ambient [<YOUR CAPABITILITY>]` error, because remember the **Golden Rule** for the Ambient set.
 
 Another way we can show this is with `capsh` directly, see below.

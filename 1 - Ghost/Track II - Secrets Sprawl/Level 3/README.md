@@ -14,6 +14,7 @@ This challenge is about ambient capabilities. You will need to use them using a 
 ## 🛠️ Tools Used:
 - ssh
 - getcap
+- capsh
 
 ## 🚀 Solution:
 
@@ -33,7 +34,7 @@ First, let's see what the "runner" is, we'll check the process table for this.
 ```bash
 ps aux
 ```
-![ps list](static/image-1)
+![ps list](static/image-1.png)
 
 Two interesting information comes up, we have a sleep 30 and /usr/local/bin/hal-runner-loop that is running, this probably indicates that a script is running every 30 seconds.
 
@@ -53,16 +54,17 @@ Now, let's see what the program actually does:
 cat /usr/local/bin/hal-runner-loop
 ```
 ![runner program](static/image-4.png)
-```
+
 Alright! What's going on here?
 
 So first we set classic explicit failures using `set -uo pipefail`, `-u` is for explicit failures when it comes to unbound variables, `-o pipefail` is well... For piplelines, you know "command_1 | command_2", this kind of thing. This is to prevent that the errors in those is masked. This is because as we see below, we have two pipelines for:
+
 ```bash
 [ -f "${job}" ] && [ -x "${job}" ] || continue
 /usr/local/bin/hal-runner-wrap "${job}" >/dev/null 2>&1 || true
 ```
 
-Anyways, from the script we also get the jobs' running directory, which is in `/opt/hal-runner/jobs`, so everything we put in there gets executed by the "hal-runner-wrap", cool.
+Anyways, from the script we also get the jobs' running directory, which is in `/opt/hal-runner/jobs`, so everything we put in there gets executed by the `hal-runner-wrap`, cool.
 
 So let's create our way to root exploiting those capabilities.
 
@@ -75,7 +77,7 @@ What do we need? We want to get root.
 How? We can use capsh to create a virtual shell to launch commands as root and create a user in /etc/passwd with UID 0 and GID 0, which is root.
 
 What is the format of users in /etc/passwd? It's:
-```
+```bash
 username:password:UID:GID:GECOS:home:shell
 ```
 
