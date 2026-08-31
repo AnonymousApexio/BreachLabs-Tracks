@@ -14,6 +14,7 @@ This challenge is about pivoting. You will need to use the key you found in the 
 ## 🛠️ Tools Used:
 - ssh
 - cat
+- getcap
 
 
 ## 🚀 Solution:

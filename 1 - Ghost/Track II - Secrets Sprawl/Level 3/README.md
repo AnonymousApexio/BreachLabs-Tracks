@@ -13,8 +13,11 @@ This challenge is about ambient capabilities. You will need to use them using a 
 
 ## 🛠️ Tools Used:
 - ssh
-- getcap
+- getpcaps
 - capsh
+- grep
+- ps
+- chmod
 
 ## 🚀 Solution:
 

@@ -22,6 +22,7 @@ Everything is yours alone. Your password and your flags are tied to your account
 ## 🛠️ Tools Used:
 - ssh
 - getcap
+- grep
 
 ## 🚀 Solution:
 
