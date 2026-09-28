@@ -6,14 +6,14 @@
 
 **Difficulty:** Beginner-
 
-**Link:** https://breachlab.org/tracks/ghost/1
+**Link:** https://breachlab.org/tracks/ghost/i/1
 
 ## 📋 Description:
 Shell quoting is the foundation for shell injection, path traversal, and every real attack that abuses how operators pass arguments to other programs.
 
 ## 🔍 Reconnaissance:
 1. Opened the challenge page:
-![Challenge page](image.png)
+![Challenge page](static/image.png)
 2. Checked the bash explanation on shell quoting at: https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_03.html
 
 ## 🛠️ Tools Used:

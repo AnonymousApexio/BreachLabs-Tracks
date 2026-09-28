@@ -2,6 +2,9 @@
 
 A collection of my personal writeups for challenges from [BeachLabs](https://breachlab.org/tracks/).
 
+## 🛠️ Fair AI Use Disclosure:
+I would like to preface this that this project has used AI for the original structure of documentation, **everything** besides that has been typed by hand through hours of research. Each level has a ridiculous amount of time spent into building its structure and structuring its information.
+
 ## 📋 About BreachLab
 BreachLab is an intuitive platform for learning linux exploitation through multiple challenges related to different areas of information technology and cybersecurity through hands-on challenges in various categories like system exploitation, information gathering, pentesting, software security, AI exploitation, DFIR, counter forensics, blue teaming, red teaming, mobile security, binary exploitation and RE, and more. It's basically an evolved version of OverTheWire.
 
@@ -48,7 +51,7 @@ Using BreachLab means you've read these and you're in. No checkbox.
 | [Oracle](7%20-%20Oracle/) | [Oracle Path Link](https://breachlab.org/tracks/oracle) | ⚫ Unavailable | 0 | AI/LLM security. Prompt injection, jailbreaking, data exfiltration through LLMs, agent exploitation, RAG poisoning, model attacks. |
 | [Wraith](8%20-%20Wraith/) | [Wraith Path Link](https://breachlab.org/tracks/wraith) | ⚫ Unavailable | 0 | Windows and Active Directory. PowerShell, token impersonation, Kerberoasting, pass-the-hash, DCSync, Golden Ticket, AMSI bypass, GPO abuse. |
 | [Shadow](9%20-%20Shadow/) | [Shadow Path Link](https://breachlab.org/tracks/shadow) | ⚫ Unavailable | 0 | Anonymity, OPSEC, and darknet. Tor, VPN chains, anonymous communications, cryptocurrency privacy, counter-forensics, attribution resistance. |
-| [Sentinel](10%20-%20Sentinel/) | [Sentinel Path Link](https://breachlab.org/tracks/sentinel) | ⚫ Unavailable | 0 | Blue team — the full SOC-to-DFIR arc. Log analysis & SIEM hunting, alert triage, incident response, endpoint & Windows forensics, memory & disk DFIR, malware analysis, network detection, threat hunting, CTI & attribution, detection engineering (Sigma/YARA/Suricata), cloud & identity detection, and detection-driven hardening. A purple-team through-line has you detect the exact TTPs you attacked in Ghost, Phantom, Mirage and Specter. |
+| [Sentinel](10%20-%20Sentinel/) | [Sentinel Path Link](https://breachlab.org/tracks/sentinel) | 🟡 Planning | 0 | Blue team — the full SOC-to-DFIR arc. Log analysis & SIEM hunting, alert triage, incident response, endpoint & Windows forensics, memory & disk DFIR, malware analysis, network detection, threat hunting, CTI & attribution, detection engineering (Sigma/YARA/Suricata), cloud & identity detection, and detection-driven hardening. A purple-team through-line has you detect the exact TTPs you attacked in Ghost, Phantom, Mirage and Specter. |
 | [Prism](11%20-%20Prism/) | [Prism Path Link](https://breachlab.org/tracks/prism) | ⚫ Unavailable | 0 | Apple security. macOS SIP/TCC/Gatekeeper bypass, Keychain extraction, iOS jailbreak fundamentals, app analysis, AirDrop exploitation. |
 | [Venom](12%20-%20Venom/) | [Venom Path Link](https://breachlab.org/tracks/venom) | ⚫ Unavailable | 0 | Red team operations. C2 frameworks, implant development, payload delivery, infrastructure setup, EDR bypass, campaign planning, purple teaming. |
 | [Flux](13%20-%20Flux/) | [Flux Path Link](https://breachlab.org/tracks/flux) | ⚫ Unavailable | 0 | Binary exploitation and reverse engineering. Stack overflow, ROP, heap, shellcoding, mitigation bypass, malware RE, firmware analysis, exploit development. |

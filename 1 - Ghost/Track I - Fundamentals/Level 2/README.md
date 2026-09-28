@@ -6,7 +6,7 @@
 
 **Difficulty:** Beginner-
 
-**Link:** https://breachlab.org/tracks/ghost/2
+**Link:** https://breachlab.org/tracks/ghost/i/2
 
 ## 📋 Description:
 Forensics and malware persistence analysis. Attackers hide their tools in exactly this way. Defenders hunt exactly this way.

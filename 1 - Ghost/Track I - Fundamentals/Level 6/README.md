@@ -6,7 +6,7 @@
 
 **Difficulty:** Beginner+
 
-**Link:** https://breachlab.org/tracks/ghost/6
+**Link:** https://breachlab.org/tracks/ghost/i/6
 
 ## 📋 Description:
 Credential extraction. Environment variables are how secrets leak into process lists, crash logs, and CI pipelines every single day.

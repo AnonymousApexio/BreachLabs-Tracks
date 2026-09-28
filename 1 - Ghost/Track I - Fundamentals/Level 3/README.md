@@ -6,7 +6,7 @@
 
 **Difficulty:** Beginner
 
-**Link:** https://breachlab.org/tracks/ghost/3
+**Link:** https://breachlab.org/tracks/ghost/i/3
 
 ## 📋 Description:
 Linux permissions are the entire foundation of privilege escalation. This is level zero of real privesc.
@@ -60,7 +60,7 @@ So I went ahead and scanned through the entire directory of the challenge to fin
 ![Directory scan](static/image-4.png)
 
 We can see that we have that the group analysts has read access to the files in the middle directory. Considering we're part of that group, we can totally read them. And based on the file name... We can deduct which contains what.
-
+ 
 ### Step 5:
 Went ahead and got file output to get the password for the next challenge:  
 ![File contents](static/image-5.png)

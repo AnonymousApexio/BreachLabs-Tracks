@@ -6,7 +6,7 @@
 
 **Difficulty:** Beginner+
 
-**Link:** https://breachlab.org/tracks/ghost/4
+**Link:** https://breachlab.org/tracks/ghost/i/4
 
 ## 📋 Description:
 Threat hunting. This is the core loop of every SOC analyst on the planet - find the needle in the log haystack.

@@ -160,7 +160,7 @@ case '~':
 	  temp = bash_tilde_find_word (string + sindex, tflag, &t_index); // This is our function that finds the tilde expansion, it will return NULL if it can't find it, or a string with the expansion if it can. It will also set t_index to the length of the tilde word.
 	    
 	  internal_tilde = 0;
-
+    
 	  if (temp && *temp && t_index > 0)
 	    {
 	      temp1 = bash_tilde_expand (temp, tflag);

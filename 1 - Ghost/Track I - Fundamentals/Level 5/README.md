@@ -6,7 +6,7 @@
 
 **Difficulty:** Beginner+
 
-**Link:** https://breachlab.org/tracks/ghost/5
+**Link:** https://breachlab.org/tracks/ghost/i/5
 
 ## 📋 Description:
 Network reconnaissance and banner grabbing. The opening move in every pentest.
