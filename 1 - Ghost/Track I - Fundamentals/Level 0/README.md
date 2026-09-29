@@ -8,6 +8,12 @@
 ## 📋 Description:
 Getting your bearings on a box you have never seen before. Every single engagement - offensive or defensive - starts here.
 
+## 📚 What you'll learn:
+- Advanced SSH.
+- The `ls` utility.
+- The `cat` command.
+- How to move through your filesystem in CLI.
+
 ## 🔍 Reconnaissance:
 1. Opened the challenge page  
 ![Challenge page](image.png)
@@ -37,8 +43,8 @@ Those are the most used ones, there are many others tho.
 As mentioned, the command we will use for this is gonna be `ssh`.
 
 Let's introduce the best parameters of `ssh`:
-- `-D <your-address>:<your-port>`: This uses a local port, this is mostly used for lateral movement and pivoting in systems. It uses SOCKS5 protocol, this option requires root for privileged ports (Below 1024).
-- `F <your-config-file-path>`: This can be used to use a specific ssh configuration file. Normally, ssh uses the system-wide configuration in `/etc/ssh/ssh_config`, this will be ignored with this parameter, without a path, this option will use the configuration in ~/.ssh/config, if the option is set to `none`, no configuration will be used.
+- `-D <your-address>:<your-port>`: This uses a local port, this is mostly used for lateral movement and pivoting in systems. It uses `SOCKS5` protocol, this option requires root for privileged ports (Below 1024).
+- `F <your-config-file-path>`: This can be used to use a specific ssh configuration file. Normally, ssh uses the system-wide configuration in `/etc/ssh/ssh_config`, this will be ignored with this parameter, without a path, this option will use the configuration in `~/.ssh/config`, if the option is set to `none`, no configuration will be used.
 - `-i <your-private-key-path>`: This option is used to specify a private key to use for authentication. This type of key can be generated with `ssh-keygen`, and is used to authenticate with a public key, this is the most secure native way to authenticate with ssh. (Besides 2FA, which is not native to ssh). The public key is usually stored in `~/.ssh/authorized_keys` on the server, and the private key is stored on the client in ~/.ssh/id_rsa.
 - `-J <user>@<jump-host>`: This option is used to connect to a jump host, this is a host that is used as a proxy to connect to another host. This option requires OpenSSH 7.3 or higher.
 - `-L <local-port>:<remote-host>:<remote-port>`: This option is used to forward a local port to a remote host and port. This option requires root for privileged ports (Below 1024).
@@ -77,8 +83,71 @@ The most used parameters of `cat` are:
 - `-v`: This option is used to show non-printing characters, this is useful for reading files with non-printing characters.
 
 
-Finally, let's introduce the `cd` command, this command is used to change the current working directory. It is one of the most used commands in Linux, is an internal command, native to Linux, and is used to navigate the filesystem, its meaning is "change directory".
+Now, let's introduce the `cd` command, this command is used to change the current working directory. It is one of the most used commands in Linux, is an internal command, native to Linux, and is used to navigate the filesystem, its meaning is "change directory".
 
+```bash
+cd /
+```
+Would move your position in the Linux Filesystem to its root.
+
+To move up a level in the Linux Filesystem, you would use:
+```bash
+cd ..
+```
+
+To move back to where you were previously, you would use:
+```bash
+cd -
+```
+
+To go to your home directory, you can use tilde:
+```bash
+cd ~
+```
+
+This is for the basic syntax, now for file paths, there are two types of file paths in linux, **relative** and **absolute** paths:
+- **relative path**: A relative path is a path that is seen from your point of view, for example, if you were on a tree, and you wanted to go to the branch across from you, you would just walk or jump to it.
+- **absolute path**: An absolute path is a path that is seen from the point of view of the tree, to retake the tree analogy, imagine you were on a branch and you wanted to go the branch across from you, if you used the absolute path to that branch, you would need to jump down to the root of the tree before climbing back up all the branches needed to reach that branch.
+
+Let's demonstrate practically, let's say we have:
+- Root
+   - Branch A
+      - Sub Branch A
+   - Branch B
+      - Sub Branch B 
+
+If I was on Sub Branch B and I wanted to go the Sub Branch A with a relative path, I would go Sub Branch B -> Branch B -> Branch A -> Sub Branch A, right?
+
+But if I had to use an **absolute** path, I would have to jump to the root and then go to Sub Branch A; Sub Branch B -> Root -> Branch A -> Sub Branch A.
+
+Well, same in Linux.
+
+For:
+- /
+   - /home
+      - /home/guy
+         - /home/guy/Desktop (**You are here**)
+         - /home/guy/Documents
+         - /home/guy/...
+   - /etc
+
+If I wanted to go to my Documents folder, I could do:
+```bash
+cd ../Documents
+```
+
+Or, "Go up one branch and go to Documents".
+
+Now, if I wanted to go to `/etc`, it would be long to use a relative path (`../../../etc`, or go up 3 branches and then go to `/etc`)
+
+That's why here we use absolute path:
+```bash
+cd /etc
+```
+
+Or, "Go from the root to the /etc directory".
+
+With that said and done, let's move to the challenge.
 
 ### Step 1:
 Connected using ssh to the target using the provided credentials:

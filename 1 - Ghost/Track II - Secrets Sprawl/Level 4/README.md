@@ -11,6 +11,7 @@
 ## 📋 Description:
 This challenge is about pivoting. You will need to use the key you found in the level to connect to the next machine and read the flag in the home directory of the pipeline user.
 
+
 ## 🛠️ Tools Used:
 - ssh
 - cat

@@ -11,6 +11,11 @@
 ## 📋 Description:
 Network reconnaissance and banner grabbing. The opening move in every pentest.
 
+## 📚 What you'll learn:
+- Port scanning basics.
+- Curling basics.
+- File descriptor basics.
+- Netcat basics for port grabbing.
 
 ## 🔍 Reconnaissance:
 1. Opened the challenge page  

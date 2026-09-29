@@ -15,6 +15,12 @@ Every level is played inside the box. Your objective and the hints are Kael's no
 
 Everything is yours alone. Your password and your flags are tied to your account, so nothing you find unlocks anything for anyone else. The host fingerprint never changes, so reconnecting is friction free.
 
+## 📚 What you'll learn:
+- Linux Capabilities.
+- The concept of bitmask.
+- The `capsh` utility.
+- The `getcap` utility.
+
 ## 🔍 Reconnaissance:
 1. Opened the challenge page:
 ![Image of the challenge](static/image.png)
@@ -39,7 +45,7 @@ So immediately, we can infer that we're in a docker container environment based 
 
 For more information on this, see https://docs.docker.com/engine/containers/run/#container-identification
 
-The hostname here is really just a 12 character shortened UUID identifier to ensure that no two containers will ever share the same ID. It also shows us this an epheremearal machine that lasts for a specific session.
+The hostname here is really just a 12 character shortened UUID identifier to ensure that no two containers will ever share the same ID. It also shows us this an ephemeral machine that lasts for a specific session.
 
 We can also know we're in a docker environment by looking at the root of the file system's `.dockerenv` file. (Which in this instance is empty.) As well as under /run/systemd/container, we see "docker".
 
@@ -89,7 +95,7 @@ Without capabilities, you would need to set the SUID bit (See Fundamentals Level
 
 ### Representation?
 
-Those capabilites are stored as hexadecimal numbers called "bitmasks" of length 64 bits (1 bit for each capability, 0 is disabled, 1 is enabled).
+Those capabilities are stored as hexadecimal numbers called "bitmasks" of length 64 bits (1 bit for each capability, 0 is disabled, 1 is enabled).
 
 Hexadecimal uses 4 bits for each character, from 0-9 and then to A-F, A=10, B=11, so on and so on.
 
@@ -104,7 +110,7 @@ But what does that actually look like in binary?
 0000000000000000000000011111111111111111111111111111111111111111
 ```
 
-This means we have 41 capabilites turned on, which is what linux gives to a process by default.
+This means we have 41 capabilites turned on, which is what the average linux unmodified kernel gives at the time of writing.
 
 This can be seen through the `capsh` utility's decode feature:  
 ![capabilities](static/image-4.png)
@@ -169,7 +175,7 @@ Some options I think are relevant are:
 Example:  
 ![alt text](static/image-10.png)
 
-This shows us the three different views and we can see that the 13th bit is set (0010) in inherited and ambient sets. If you try to use capsh using just the `addAmb` parameter, you will get a `failed to raise ambient [<YOUR CAPABITILITY>]` error, because remember the **Golden Rule** for the Ambient set.
+This shows us the three different views and we can see that the 13th bit is set (0010) in inherited and ambient sets. If you try to use capsh using just the `addAmb` parameter, you will get a `failed to raise ambient `[<YOUR CAPABITILITY>]` error, because remember the **Golden Rule** for the Ambient set.
 
 Another way we can show this is with `capsh` directly, see below.
 
@@ -183,7 +189,7 @@ Some useful options:
 - --decode: Decodes the given bitmask.
 - --uid: Changes uid (No this doesn't work without root)
 - --inh: Adds capabilities to the inheritable set.
-- --addamb: Adds capabilities to the ambiant set.
+- --addamb: Adds capabilities to the ambient set.
 - --noamb: Resets all ambient capabilities.
 
 ### Note:

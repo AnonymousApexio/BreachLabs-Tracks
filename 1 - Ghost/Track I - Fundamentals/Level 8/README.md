@@ -8,6 +8,11 @@
 ## 📋 Description:
 Fileless malware analysis and live incident response. This is what an IR engineer does at 3am when a box is already compromised and disk forensics is too slow.
 
+## 📚 What you'll learn:
+- How process work in-depth.
+- How to inspect them with `ps`.
+- The `/proc/` virtual file-system.
+- Why secrets in environment variables are dangerous for processes.
 
 ## 🔍 Reconnaissance:
 1. Opened the challenge page:  
@@ -17,6 +22,7 @@ Fileless malware analysis and live incident response. This is what an IR enginee
 - ssh
 - ps
 - cat
+
 
 ## 🚀 Solution:
 
@@ -828,7 +834,7 @@ cat /usr/local/bin/level8-daemon.py
 ![file output](static/image-6.png)
 Mhhh... Nothing other than a sleep function...
 
-Alright. Now what? We know the answer is found using the `ps` command based on the challenge's page. Where can information be hidden in a process's `ps` output? For the level of this challenge, it cannot be some register based search, let's check environment variables for each of those processes.
+Alright. Now what? We know the answer is found using the `ps` command based on the challenge's page. Where can information be hidden in a process's `ps` output? Well, if we look at the before, we can see, one is launched with `runuser -p`, while the other isn't, funnily enough, the `-p` part is exactly what leaks our flag, it's an environment preserving parameter, so if we check environment in `ps`.
 ```bash
 ps eww xx xxxxx xxxxx xxxxx
 ```

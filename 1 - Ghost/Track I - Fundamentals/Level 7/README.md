@@ -11,6 +11,11 @@
 ## 📋 Description:
 Malware analysis. Real-world payloads are almost always encoded two or three times deep to evade simple detection.
 
+## 📚 What you'll learn:
+- The basics of base64.
+- The `xxd` utility.
+- Understanding an hexdump.
+
 ## 🔍 Reconnaissance:
 1. Opened the challenge page:  
 ![Challenge Page](static/image.png)

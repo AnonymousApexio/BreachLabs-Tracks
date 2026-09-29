@@ -11,6 +11,11 @@
 ## 📋 Description:
 This challenge is about capabilities. You will need to find a binary that has the cap_setuid capability set, and use it to escalate to the builder user.
 
+## 📚 What you'll learn:
+- The `$HOME` environment variable.
+- execve basics.
+- Tilde representation at a low level.
+
 ## 🛠️ Tools Used:
 - getcap
 - cat
@@ -29,11 +34,11 @@ su deploy
 ### Step 2:
 Alright. So what do we have here?
 
-Kael tells us we are the deploy user, that it feels like we have power but we don't and that usually at this point you hunt for SUID binaries. (See Ghost I for more information on SUID).
+Kael tells us we are the deploy user, that it feels like we have power but we don't and that it's usually at this point you hunt for SUID binaries. (See Ghost I for more information on SUID).
 
 If we do try to search for SUID binaries, we will find nothing apparently, so let's try.
 ```bash
-find / -perm 4000
+find / -perm /4000
 ```
 
 And indeed, we find nothing:  

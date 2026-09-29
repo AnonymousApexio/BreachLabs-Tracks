@@ -4,11 +4,12 @@
 
 **Points:** 900
 
-**Difficulty:** Intermediate+
+**Difficulty:** Advanced
 
 **Link:** https://breachlab.org/tracks/ghost/ii
 
 ## 📋 Description:
+Enumeration of a machine all the way to exploiting the pipeline and exploiting weak configurations.
 
 
 ## 🛠️ Tools Used:
@@ -77,7 +78,7 @@ A service user called `svc-deploy`.
 
 Whatever releng is.
 
-And we have signer user... What's interesting is that there is a depecrancy in the GID number... Where is GID 1000?
+And we have signer user... What's interesting is that there is a discrepancy in the GID number... Where is GID 1000?
 
 Let's enumerate the groups:
 ```bash
@@ -118,19 +119,20 @@ Interesting folder under `/var` is `/var/lib` and /var/log/halcyon:
 
 We can see that `/var/lib` has a directory called svc-deploy that we cannot yet access... Interesting is it not?
 
-Let's see in /usr/local/bin to see if we have any binaries there:
+Let's see in `/usr/local/bin` and `/usr/local/sbin` to see if we have any binaries there:
 ```bash
-ls -laR /usr/local/bin
+ls -laR /usr/local/bin /usr/local/sbin
 ```
-![halcyon-ci](image-8.png)
+![custom binaries](static/image-8.png)
 
-We have a binary called `halcyon-ci-sync`.
+We have a few interesting world-readable scripts, one called `halcyon-ci-sync` and the two others are a runas script and the other is a reload script. We'll check them out later.
+
 
 Another important folder is /etc/systemd/system, let's check it out:
 ```bash
 ls -laR /etc/systemd/system
 ```
-![systemd files](image-9.png)
+![systemd files](static/image-9.png)
 
 Oh... We can see quite a few interesting files here:
 ```bash
@@ -183,7 +185,7 @@ Alright... So we have command execution as the svc-deploy user... Cool.
 
 Let's get an ssh connection, first, the keys:
 ```bash
-ssh-keygen ed25519 -t ed25519 -f ~/.ssh/id_ed25519_backup
+ssh-keygen -t ed25519 -f ~/.ssh/svcdeploy_key
 ```
 ![Key creation](static/image-13.png)
 
@@ -209,7 +211,7 @@ And now we can connect as svc-deploy:
 ```bash
 ssh -i svcdeploy_key svc-deploy@<yourdockerID>
 ```
-![connection as svc-deploy](static/image-13.png)
+![connection svc-deploy](static/image-15.png)
 ### Step 5:
 Now that we are svc-deploy, we can check the home directory of this user:
 ```bash
@@ -220,7 +222,7 @@ And after checking the home directory for this user, we have:
 ```bash
 ls -laR
 ```
-![file enumeration home directory](static/image-14.png)
+![file enumeration home directory](static/image-16.png)
 
 We have two files... `deploy-step.log` and `kael.txt`.
 
@@ -230,13 +232,17 @@ kael.txt however...
 ```bash
 cat kael.txt
 ```
-![kael.txt svc-deploy](image.png)
+![kael.txt svc-deploy](static/image-17.png)
 
 Let's decrypt this... So "Small mercy: you are trusted to act as someone above you, but only in the exact ways someone wrote down. Trust is like a policy, not a password." 
 
-So this clearly refers to the pkexec binary we saw at the start... We need to run the release engineer, releng. 
+So this clearly refers to the pkexec binary we saw at the start... We need to run the release engineer, releng, however that will be in the next level.
 
-By the way, the **flag** is in one of the initial directories we enumerated in case you wonder.
+By the way, the **flag** is in one of the initial directories we enumerated in case you wonder, **you** will have to find it among the directories in the initial system enumeration part, can you find it?:
+![flag](static/image-18.png)
 
 ### Step 6:
-Moving on to the next level.
+Moving on to the next level with the unused informations we have left from here:
+- The timers.
+- The unused scripts.
+- The `pkexec` utility.

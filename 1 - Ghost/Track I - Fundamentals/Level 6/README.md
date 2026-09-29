@@ -11,6 +11,10 @@
 ## 📋 Description:
 Credential extraction. Environment variables are how secrets leak into process lists, crash logs, and CI pipelines every single day.
 
+## 📚 What you'll learn:
+- What environment variables are
+- How to see them in system enumeration on linux systems
+- Common AWS (Amazon Web Services) environment variables
 
 ## 🔍 Reconnaissance:
 1. Opened the challenge page:
@@ -33,8 +37,11 @@ ssh ghost6@204.168.229.209 -p 2222
 ![Image of connection](static/image-1.png)
 
 ### Step 2:
-Immediately based off the description, I knew this challenge was about environment variables, so I checked them out:
+Immediately based off the description, I knew this challenge was about environment variables.
 
+But what are environment variables? In linux, an environment variable is a key-value pair used to influence the behavior of software, for example `LANG=en_EN.UTF-8` can be used to determine the default language software communicates with the user.
+
+Let's check them out, there are multiple ways to do so, but here we will use `env`, the more classic way is to use `printenv` since `env` can also be used to temporarily modify environment variables:
 ```bash
 env
 ```
@@ -55,7 +62,7 @@ Clearly those are not standard linux environment variables. The answer to this l
 
 ![env of ghost5](static/image-3.png)
 
-We can clearly see that the environment variables are different, so they are not standard linux environment variables, but rather custom ones.
+We can clearly see that the environment variables are different, so they are custom ones.
 
 The most classic way to do this on linux systems is to use the `export` command, which is used to set environment variables. However, this is not the only way to do it, and in fact, the way this challenge is set up, it is not done using the classic `export` command, but rather using a file called `.bashrc` which will inject what we put in it into our environment.
 

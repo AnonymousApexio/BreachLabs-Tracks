@@ -11,6 +11,9 @@
 ## 📋 Description:
 Threat hunting. This is the core loop of every SOC analyst on the planet - find the needle in the log haystack.
 
+## 📚 What you'll learn:
+- Practical use of the `find` command.
+- Finding information amongst garbage.
 
 ## 🔍 Reconnaissance:
 1. Opened the challenge page

@@ -11,6 +11,10 @@
 ## 📋 Description:
 Shell quoting is the foundation for shell injection, path traversal, and every real attack that abuses how operators pass arguments to other programs.
 
+## 📚 What you'll learn:
+- The `cat` command.
+- Linux shell quoting basics.
+
 ## 🔍 Reconnaissance:
 1. Opened the challenge page:
 ![Challenge page](static/image.png)

@@ -11,6 +11,8 @@
 ## 📋 Description:
 Forensics and malware persistence analysis. Attackers hide their tools in exactly this way. Defenders hunt exactly this way.
 
+## 📚 What you'll learn:
+- `cat` tricks.
 
 ## 🔍 Reconnaissance:
 1. Opened the challenge page  

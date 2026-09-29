@@ -11,6 +11,11 @@
 ## 📋 Description:
 This challenge is about ambient capabilities. You will need to use them using a script that is run by a service to read the flag in /var/lib/ops/.flag.txt.
 
+## 📚 What you'll learn:
+- Process capabilities in practice.
+- `/etc/passwd`  row structure.
+- `capsh` in practice.
+
 ## 🛠️ Tools Used:
 - ssh
 - getpcaps
@@ -46,10 +51,12 @@ Before anything, let's check what we can do with that program.
 getpcaps 100
 ```
 ![getpcaps](static/image-2.png)
+
 Alright! So we know what that means right? It means it has all capabilities in the existence of the universe.
 
 In fact we can see this better using `grep`:  
 ![grep 100](static/image-3.png)
+
 Now, as we can see, it has literally every 41 of our possible capabilities to the max.
 
 Now, let's see what the program actually does:
@@ -60,7 +67,7 @@ cat /usr/local/bin/hal-runner-loop
 
 Alright! What's going on here?
 
-So first we set classic explicit failures using `set -uo pipefail`, `-u` is for explicit failures when it comes to unbound variables, `-o pipefail` is well... For piplelines, you know "command_1 | command_2", this kind of thing. This is to prevent that the errors in those is masked. This is because as we see below, we have two pipelines for:
+So first we set classic explicit failures using `set -uo pipefail`, `-u` is for explicit failures when it comes to unbound variables, `-o pipefail` is well... For pipelines, you know "command_1 | command_2", this kind of thing. This is to prevent that the errors in those is masked. This is because as we see below, we have two pipelines for:
 
 ```bash
 [ -f "${job}" ] && [ -x "${job}" ] || continue
@@ -86,13 +93,14 @@ username:password:UID:GID:GECOS:home:shell
 
 So we just create a root user without a password and we can log in as root.
 
-Considering we don't have any text editor in this machine, we can use a simple trick to create our script using a here document:
+Considering we don't have any text editor in this machine, we can use a simple trick to create our script using a `here` document:
 ```bash
 cat << 'EOF' > /opt/hal-runner/jobs/exploit
 #!/bin/bash
 capsh --uid=0 -- -c "echo 'apex::0:0:root:/root:/bin/bash' >> /etc/passwd"
 EOF
 ```
+We are using the capability shell wrapper to force the process's UID to become 0 with the setuid() syscall, then we pass in a command to add a line in `/etc/passwd` for a root user with no password. The "--" just tells capsh to stop parsing arguments by itself, everything after, `-c` in this case, will be parsed by the underlying shell which is `/bin/bash` here.
 
 Then we just need to make it executable:
 ```bash

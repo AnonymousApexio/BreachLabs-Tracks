@@ -11,6 +11,8 @@
 ## 📋 Description:
 Linux permissions are the entire foundation of privilege escalation. This is level zero of real privesc.
 
+## 📚 What you'll learn:
+- The `id` utility.
 
 ## 🔍 Reconnaissance:
 1. Opened the challenge page  
@@ -47,13 +49,18 @@ Nothing to see except a map.txt file.
 After opening the file, we can see that it contains paths to directories with mention of permissions.  
 ![Map.txt](static/image-2.png)
 
+In linux, `world-readable` means everyone can read the file.
+
 ### Step 3:
 Now immediately based on the file output, I thought about the permissions right? Clearly this challenge is about permissions, else we wouldn't have chmod and stuff.
 
 Therefore, I checked the the groups I am part of using id:  
+```bash
+id
+```
 ![Groups](static/image-3.png)
 
-We can I am part of three groups. One of those is important for the next part.
+We can see I am part of three groups. One of those is important for the next part.
 
 ### Step 4:
 So I went ahead and scanned through the entire directory of the challenge to find multiple files:  
