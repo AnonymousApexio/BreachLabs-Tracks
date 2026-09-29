@@ -8,6 +8,8 @@
 
 **Link:** https://breachlab.org/tracks/ghost/ii
 
+**MITRE Mapping**: https://attack.mitre.org/techniques/T1548/ -- Abuse Elevation Control Mechanism
+
 ## 📋 Description:
 This challenge is about ambient capabilities. You will need to use them using a script that is run by a service to read the flag in /var/lib/ops/.flag.txt.
 
@@ -84,7 +86,7 @@ We could create a simple script that just gives us the flag... But that's no fun
 So let's craft our script...
 
 What do we need? We want to get root.
-How? We can use capsh to create a virtual shell to launch commands as root and create a user in /etc/passwd with UID 0 and GID 0, which is root.
+How? We can use `capsh` to create a virtual shell to launch commands as root and create a user in `/etc/passwd` with UID 0 and GID 0, which is root.
 
 What is the format of users in /etc/passwd? It's:
 ```bash

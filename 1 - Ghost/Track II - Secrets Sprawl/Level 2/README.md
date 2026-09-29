@@ -4,9 +4,11 @@
 
 **Points:** 600
 
-**Difficulty:** Intermediate
+**Difficulty:** Moderate
 
 **Link:** https://breachlab.org/tracks/ghost/ii
+
+**MITRE Mapping**: https://attack.mitre.org/techniques/T1548/001/ -- Abuse Elevation Control Mechanism: Setuid and Setgid
 
 ## 📋 Description:
 This challenge is about capabilities. You will need to find a binary that has the cap_setuid capability set, and use it to escalate to the builder user.

@@ -8,9 +8,14 @@
 
 **Link:** https://breachlab.org/tracks/ghost/ii
 
+**MITRE Mapping**: https://attack.mitre.org/techniques/T1021/004/ -- SSH
+https://attack.mitre.org/techniques/T1005/ -- Collecting Data From Local System
+
 ## 📋 Description:
 This challenge is about pivoting. You will need to use the key you found in the level to connect to the next machine and read the flag in the home directory of the pipeline user.
 
+## 📚 What you'll learn:
+- If you haven't done Ghost I, you'll learn pivoting with an SSH private key.
 
 ## 🛠️ Tools Used:
 - ssh

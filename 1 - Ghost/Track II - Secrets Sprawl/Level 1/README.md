@@ -4,9 +4,11 @@
 
 **Points:** 500
 
-**Difficulty:** Intermediate
+**Difficulty:** Intermediate-
 
 **Link:** https://breachlab.org/tracks/ghost/ii
+
+**MITRE Mapping**: https://attack.mitre.org/techniques/T1548/ -- Abuse Elevation Control Mechanism
 
 ## 📋 Description:
 One SSH port to begin. Your password is issued to your account and shown below. You climb inside the box, reading your way forward.
@@ -20,6 +22,7 @@ Everything is yours alone. Your password and your flags are tied to your account
 - The concept of bitmask.
 - The `capsh` utility.
 - The `getcap` utility.
+- Docker container identifiers.
 
 ## 🔍 Reconnaissance:
 1. Opened the challenge page:

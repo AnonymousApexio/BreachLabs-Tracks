@@ -8,15 +8,23 @@
 
 **Link:** https://breachlab.org/tracks/ghost/ii
 
+**MITRE Mapping**: https://attack.mitre.org/techniques/T1053/006/ -- Abusing Systemd Timers
+https://attack.mitre.org/techniques/T1098/004/ -- Account manipulation, SSH Authorized Keys
+
 ## 📋 Description:
 Enumeration of a machine all the way to exploiting the pipeline and exploiting weak configurations.
 
+## 📚 What you'll learn:
+- Linux System Enumeration.
+- Generating SSH keys.
+- 
 
 ## 🛠️ Tools Used:
 - ls
 - cat
 - ps
 - find
+- ssh-keygen
 
 ## 🚀 Solution:
 
@@ -49,7 +57,7 @@ find / -perm -4000
 
 Immediately, we find a binary called "pkexec". What is pkexec? 
 
-pkexec is a binary that permits a user to run a shell or program as another user in *unix systems, its configuration files are located in /etc/polkit-1 as it is part of Polkit which manages access polices. More on this later.
+pkexec is a binary that permits a user to run a shell or program as another user in *unix systems, its configuration files are located in /etc/polkit-1 as it is part of Polkit which manages access polices. More on this later. We will go in more depth on this binary in the next level.
 
 Then we will check the process table:
 ```bash
@@ -206,6 +214,7 @@ chmod 600 /home/svc-deploy/.ssh/authorized_keys
 exit 0
 EOF
 ```
+At this level, you should already know what this script does. If not, go learn bash basics.
 
 And now we can connect as svc-deploy:
 ```bash
